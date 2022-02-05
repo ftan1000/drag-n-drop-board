@@ -13,11 +13,9 @@ type DraggableItemProps = {
 const Container = styled.div`
     margin: 5px;
     border: 1px solid #DDD;
-    border-radius: 1px;    
     background-color: #FFF;
     padding: 15px;
-    width: 450px;
-    
+    width: 250px;    
     height: 60px,
     userSelect: "none",
     padding: grid,

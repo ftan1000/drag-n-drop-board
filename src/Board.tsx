@@ -8,7 +8,7 @@ import {
     Droppable,
     DropResult
 } from "react-beautiful-dnd";
-import NewsItem from "./NewsItem";
+// import NewsItem from "./NewsItem";
 
 interface Item {
     id: string;
@@ -152,7 +152,7 @@ function Board() {
                                                         snapshotDraggable.isDragging
                                                     )}
                                                 >
-                                                    <NewsItem imageId={item.imageId} id={item.id} title={item.content}/>
+                                                    {/*<NewsItem imageId={item.imageId} id={item.id} title={item.content}/>*/}
                                                 </div>
 
                                             )}

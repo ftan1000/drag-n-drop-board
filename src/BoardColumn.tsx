@@ -7,17 +7,22 @@ import {Droppable} from "react-beautiful-dnd";
 
 const Container = styled.div`
     margin: 8px;
-    border: 1px solid #EEE;
+    border: 1px solid #AAA;
     border-radius: 2px;    
     background-color: #EFEFEF;
-    padding: 2;
-    width: 450;
+    padding: 2px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
 `;
 const Title = styled.div`
     padding: 8px;
 `;
 const NewsList = styled.h3`
     padding: 8px;
+    transition: background-color 0.2s ease;
+    flex-grow: 1;
+    min-height: 100px;
 `;
 
 type BoardColumnProps = {

@@ -1,11 +1,9 @@
 import React, {useState} from "react";
-import {
-    DragDropContext,
-    DropResult
-} from "react-beautiful-dnd";
+import {DragDropContext, DropResult} from "react-beautiful-dnd";
 
 import {initialData} from "./initial-data";
 import BoardColumn from "./BoardColumn";
+import styled from "styled-components";
 
 // interface Item {
 //     id: string;
@@ -13,64 +11,91 @@ import BoardColumn from "./BoardColumn";
 //     content: string;
 // }
 
+const Columns = styled.div`
+    display: flex;
+`;
+
 function NewsBoard() {
 
     const [data, setData] = useState(initialData);
 
     function onDragEnd(result: DropResult) {
-        console.log('DropResult', result);
-        const { destination, source, draggableId } = result;
+        const {destination, source, draggableId} = result;
 
         if (!destination)
             return;
 
         // Did the location of the location change?
-        if (destination.droppableId === source.droppableId && destination.index === source.index){
+        if (destination.droppableId === source.droppableId && destination.index === source.index) {
             return;
         }
 
         // @ts-ignore
-        const column = data.columns[source.droppableId];
-        console.log('column', column);
+        const start = data.columns[source.droppableId];
+        // @ts-ignore
+        const finish = data.columns[destination.droppableId];
 
-        const newItemIds = Array.from(column.itemIds);
-        console.log('newItemIds', newItemIds);
-        newItemIds.splice(source.index, 1);
-        newItemIds.splice(destination.index, 0, draggableId);
-        console.log('newItemIds after', newItemIds);
+        if (start === finish){
+            // @ts-ignore
+            const column = data.columns[source.droppableId];
+            const newItemIds = Array.from(column.itemIds);
+            newItemIds.splice(source.index, 1);
+            newItemIds.splice(destination.index, 0, draggableId);
 
-        const newColumn = {
-            ...column,
-            itemIds: newItemIds,
+            const newColumn = {
+                ...column,
+                itemIds: newItemIds,
+            }
+
+            const newData = {
+                ...data,
+                columns: {
+                    ...data.columns,
+                    [newColumn.id]: newColumn,
+                },
+            }
+            setData(newData);
+            return;
+        } else {
+            // Moving from one column to another
+            const startItemIds = Array.from(start.itemIds);
+            startItemIds.splice(source.index, 1);
+            const newStart = {
+                ...start,
+                itemIds: startItemIds
+            }
+
+            const finishItemIds = Array.from(finish.itemIds);
+            finishItemIds.splice(destination.index, 0, draggableId);
+            const newFinish = {
+                ...finish,
+                itemIds: finishItemIds
+            };
+
+            const newState = {
+                ...data,
+                columns: {
+                    ...data.columns,
+                    [newStart.id]: newStart,
+                    [newFinish.id]: newFinish
+                },
+            }
+            setData(newState);
         }
-        console.log('newColumn', newColumn);
-
-        const newData = {
-            ...data,
-            columns: {
-                ...data.columns,
-                [newColumn.id]: newColumn,
-            },
-        }
-        console.log('newData', newData);
-        setData(newData);
     }
 
     return (
-        <div>
-            <div style={{display: "flex"}}>
-                <DragDropContext onDragEnd={onDragEnd}>
-                { data.columnOrder.map(columnId => {
+        <Columns>
+            <DragDropContext onDragEnd={onDragEnd}>
+                {data.columnOrder.map(columnId => {
                     // @ts-ignore
                     const column = data.columns[columnId];
                     // @ts-ignore
                     const items = column.itemIds.map((itemId: string) => data.items[itemId]);
-                    console.log('items', items);
-                    return <BoardColumn key={column.id} column={column} items={items} />
+                    return <BoardColumn key={column.id} column={column} items={items}/>
                 })}
-                </DragDropContext>
-            </div>
-        </div>
+            </DragDropContext>
+        </Columns>
     );
 }
 
