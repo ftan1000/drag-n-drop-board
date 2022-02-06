@@ -1,5 +1,5 @@
 import React from 'react';
-import paper from './assets/paper.png';
+import paper from '../assets/paper.png';
 import styled from "styled-components";
 
 interface NewsItemProps {

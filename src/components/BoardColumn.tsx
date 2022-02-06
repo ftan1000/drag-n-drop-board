@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
+import '../App.css';
 import DraggableItem from "./DraggableItem";
 import styled from "styled-components";
-import {Item} from "./types";
+import {Item} from "../types";
 import {Droppable} from "react-beautiful-dnd";
 
 const Container = styled.div`

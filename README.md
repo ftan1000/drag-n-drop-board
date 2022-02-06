@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Drag and Drop Newsboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Implementation of a newsboard in Typescript/React with the [Atlassian Drag and Drop Library](https://github.com/atlassian/react-beautiful-dnd).
 
 ## Available Scripts
 
