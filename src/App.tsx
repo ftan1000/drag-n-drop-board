@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import NewsBoard from "./NewsBoard";
+import NewsBoard from "./components/NewsBoard";
 
 function App() {
     return (

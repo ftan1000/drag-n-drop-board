@@ -1,15 +1,9 @@
 import React, {useState} from "react";
 import {DragDropContext, DropResult} from "react-beautiful-dnd";
 
-import {initialData} from "./initial-data";
+import {initialData} from "../initial-data";
 import BoardColumn from "./BoardColumn";
 import styled from "styled-components";
-
-// interface Item {
-//     id: string;
-//     imageId?: number;
-//     content: string;
-// }
 
 const Columns = styled.div`
     display: flex;
@@ -25,7 +19,6 @@ function NewsBoard() {
         if (!destination)
             return;
 
-        // Did the location of the location change?
         if (destination.droppableId === source.droppableId && destination.index === source.index) {
             return;
         }

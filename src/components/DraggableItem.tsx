@@ -1,5 +1,5 @@
 import React from 'react';
-import {Item} from "./types";
+import {Item} from "../types";
 import styled from "styled-components";
 import {Draggable} from "react-beautiful-dnd";
 import NewsItem from "./NewsItem";
@@ -30,7 +30,6 @@ function DraggableItem(props: DraggableItemProps) {
                     ref={provided.innerRef}
                 >
                     <NewsItem imageId={props.item.id} id={''+props.item.id} title={props.item.name}/>
-                    {/*// {props.item.content}*/}
                 </Container>
             )}
         </Draggable>
