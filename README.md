@@ -2,6 +2,8 @@
 
 Implementation of a newsboard in Typescript/React with the [Atlassian Drag and Drop Library](https://github.com/atlassian/react-beautiful-dnd).
 
+![Screenshot](./public/screenshot.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
